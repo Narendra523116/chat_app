@@ -26,7 +26,7 @@ function Login() {
   return (
 
     <div style={{
-      backgroundImage: "linear-gradient(120deg, #f6d365 0%, #fda085 100%)",
+      backgroundImage: "linear-gradient(90deg, rgb(255 255 255) 0%, rgb(25 118 210) 100%)",
     }}>
       <Container component="main" maxWidth="xs" sx={{
         height: '100vh',
@@ -104,15 +104,6 @@ function Login() {
                   }}
                   src={avatar.preview}/>
 
-                  {
-                  avatar.error && (
-                    <Typography m={"1rem"} width={"fitcontent"} display={"block"} color="error" variant="caption">
-                      {avatar.error}
-                    </Typography>
-                  )
-
-                } 
-
                   <IconButton sx={{
                     position: "absolute",
                     bottom: 0,
@@ -128,9 +119,15 @@ function Login() {
                     <CameraAltIcon/>
                     <VisuallyHiddenInput type="file" accept="image/*" id="icon-button-file" onChange={avatar.changeHandler}/>
                   </IconButton>
-
-
                 </Stack>
+
+                {
+                  avatar.error && (
+                    <Typography m={"1rem auto"} width={"fit-content"} display={"block"} color="error" variant="caption">
+                      {avatar.error}
+                    </Typography>
+                  )
+                  } 
 
                 <TextField
                 required

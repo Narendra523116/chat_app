@@ -1,23 +1,40 @@
-import React, {lazy} from 'react'
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectRoutes from './components/auth/ProtectRoutes';
 
-const Home = lazy(()=>import("./pages/Home"))
-const Login = lazy(()=>import("./pages/Login"))
-const Chat = lazy(()=>import("./pages/Chat"))
-const Groups = lazy(()=>import("./pages/Groups"))
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const Chat = lazy(() => import('./pages/Chat'));
+const Groups = lazy(() => import('./pages/Groups'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound'));
+
+let user = true;
 
 const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="about" element={<h1>About</h1>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/chat/:chatId" element={<Chat/>}/>
-        <Route path="/groups" element={<Groups/>}/>
-      </Routes>
-    </Router>
-  )
-}
+    return (
+        <Router>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                    {/* Public Route - Accessible without authentication */}
+                    <Route path="/login" element={
+                      <ProtectRoutes user={!user} redirect="/">
+                        <Login />
+                      </ProtectRoutes>
+                    } />
 
-export default App
+                    {/* Protected Routes - Require Authentication */}
+                    <Route element={<ProtectRoutes user={ user } />}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<h1>About</h1>} />
+                        <Route path="/chat/:chatId" element={<Chat />} />
+                        <Route path="/groups" element={<Groups />} />
+                    </Route>
+
+                    <Route path="*" element={<PageNotFound/>} />
+                </Routes>
+            </Suspense>
+        </Router>
+    );
+};
+
+export default App;
