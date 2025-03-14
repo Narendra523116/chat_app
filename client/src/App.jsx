@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectRoutes from './components/auth/ProtectRoutes';
+import { LayoutLoader } from './components/layout/Loaders';
 
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
@@ -13,7 +14,7 @@ let user = true;
 const App = () => {
     return (
         <Router>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<LayoutLoader/>}>
                 <Routes>
                     {/* Public Route - Accessible without authentication */}
                     <Route path="/login" element={

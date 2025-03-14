@@ -3,6 +3,8 @@ import Header from './Header'
 import Title from '../shared/Title'
 import { Grid } from '@mui/material'
 import { orange } from '../../constants/color'
+import ChatList from '../specific/ChatList.jsx'
+import { chats } from '../../constants/sampledata'
 
 const AppLayout = () => WrappedComponent => {
   return (props)=>{
@@ -16,8 +18,19 @@ const AppLayout = () => WrappedComponent => {
 
                 <Grid item sm={4} md={3} sx={{
                     display: { xs: 'none', sm: 'block' },
-                }} height="100%">
-                     First 
+                }} height={"100%"}>
+                    <ChatList chats={chats}
+                        chatId={"1"}
+                        newMessagesAlert={[
+                            {
+                                chatId: "1",
+                                count: 3
+                            },{
+                                chatId: "0",
+                                count: 999999
+                            }
+                        ]}
+                    />
                 </Grid>
                 <Grid
                 item
@@ -38,9 +51,9 @@ const AppLayout = () => WrappedComponent => {
                 sx={{
                     display:{xs : "none",sm : "block"},
                     padding: "2rem",
-                    bgcolor: "rgba(0,0,0,0.85)"
+                    bgcolor: "rgba(7, 7, 7, 0.85)"
                 }}
-                height="100%">
+                height={"100%"}>
                  Third
                 </Grid>
 
