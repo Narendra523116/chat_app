@@ -29,8 +29,8 @@ Welcome to the Chat App repository! This project is a real-time messaging applic
 
 To run this project locally, follow these steps:
 
-1. Clone this repository: `git clone https://github.com/jayasai-gorre/Mern-Chat-App.git`
-2. Navigate to the project directory: `cd Mern-Chat-App`
+1. Clone this repository: `git clone https://github.com/Narendra523116/chat_app.git`
+2. Navigate to the project directory: `cd chat_app`
 3. Install dependencies: `npm install`
 
 ### Building the Project
